@@ -1,5 +1,6 @@
 'use strict';
 
+const {values} = require("pg/lib/native/query");
 module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.createTable('todos', {
@@ -9,6 +10,10 @@ module.exports = {
         autoIncrement: true // Automatically gets converted to SERIAL for postgres
       },
       name: Sequelize.STRING,
+      status : {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

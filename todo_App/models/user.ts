@@ -6,7 +6,8 @@ const Users = db.define('Users', {
     email: {
         type: new DataTypes.STRING(128),
         allowNull: false,
-        unique: true
+        unique: true,
+        validate: { isEmail: true },
     },
     password: {
         type: new DataTypes.STRING(128),
@@ -22,5 +23,10 @@ const Users = db.define('Users', {
     }
 });
 
-
+/*
+(async () => {
+    await db.sync({force: true});
+    // Code here
+})();
+*/
 export default Users;

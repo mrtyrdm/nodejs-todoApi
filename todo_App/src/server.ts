@@ -1,6 +1,10 @@
 import express, {Express, Request, Response} from 'express';
 import db from '../config/database';
 import todosRoute from '../routes/todos';
+import Cron from '../service/Cron';
+
+Cron.deadlineControl();
+
 
 db.authenticate()
     .then(() => console.log('Database connected...'))

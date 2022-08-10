@@ -6,6 +6,17 @@ const Todos = db.define('todos', {
     type: new DataTypes.STRING(128),
     allowNull: false,
   },
+  user_id : {
+    type: new DataTypes.INTEGER(),
+    allowNull: false
+  },
+  updatedAt : {
+    type: new DataTypes.DATE()
+  },
+  status : {
+    type: new  DataTypes.BOOLEAN()
+  }
+
 });
 
 export default Todos;

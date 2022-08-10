@@ -1,6 +1,9 @@
 import todos from '../models/todos';
 import {Request, Response} from "express";
+import auth from "../service/Auth";
+import user from "../models/user";
 
+;
 
 class TodoController {
 
@@ -13,14 +16,20 @@ class TodoController {
 
     public list() : any {
         return (req: Request, res: Response) => {
-            todos.findAll().then(todos =>  res.status(200).send(todos))
+            const users = new auth(req.headers.authorization).auth();
+
+            todos.findAll({where : {user_id:users.id}}).then(todos =>  res.status(200).send(todos))
                 .catch((error) => { res.status(400).send(error); });
         }
     }
 
 
     public store() : any {
-        return (req: Request, res: Response) => { todos.create({name: req.body.name}).then((course) => res.send({'message': 'Success'}))
+
+        return (req: Request, res: Response) => {
+            const users = new auth(req.headers.authorization).auth();
+
+            todos.create({name: req.body.name, user_id:users.id}).then((course) => res.send({'message': 'Success'}))
             .catch((error) => res.status(400).send(error));
         }
     }
