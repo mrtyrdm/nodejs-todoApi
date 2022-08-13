@@ -29,7 +29,7 @@ class TodoController {
         return (req: Request, res: Response) => {
             const users = new auth(req.headers.authorization).auth();
 
-            todos.create({name: req.body.name, user_id:users.id}).then((course) => res.send({'message': 'Success'}))
+            todos.create({name: req.body.name, user_id:users.id}).then((data) => res.send({'message': 'Success', 'data': data}))
             .catch((error) => res.status(400).send(error));
         }
     }
@@ -44,7 +44,7 @@ class TodoController {
                     });
                 }
 
-                todos.update({name: req.body.name}).then(() => res.send(todos))
+                todos.update({name: req.body.name}).then(() => res.send({message:'success', data:todos}))
                     .catch((error) => res.status(400).send(error));
 
             }).catch((error) => res.status(400).send(error));

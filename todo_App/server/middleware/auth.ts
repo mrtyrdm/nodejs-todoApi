@@ -6,7 +6,7 @@ const Auth = (req,res,next) => {
         const decodeToken = jwt.verify(token,'secretKey');
         next();
     }catch (error) {
-        res.send({'auth' : 'Not token find'});
+        res.send({'auth' : 'Token not found', 'status':'error'});
     }
 
 }
