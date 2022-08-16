@@ -1,9 +1,6 @@
 import todos from '../models/todos';
 import {Request, Response} from "express";
 import auth from "../service/Auth";
-import user from "../models/user";
-
-;
 
 class TodoController {
 
@@ -29,7 +26,8 @@ class TodoController {
         return (req: Request, res: Response) => {
             const users = new auth(req.headers.authorization).auth();
 
-            todos.create({name: req.body.name, user_id:users.id}).then((data) => res.send({'message': 'Success', 'data': data}))
+
+            todos.create({name: req.body.name, user_id:users.id, deadline:req.body.deadline}).then((data) => res.send({'message': 'Success', 'data': data}))
             .catch((error) => res.status(400).send(error));
         }
     }

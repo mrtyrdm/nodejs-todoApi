@@ -15,6 +15,10 @@ const Todos = db.define('todos', {
   },
   status : {
     type: new  DataTypes.BOOLEAN()
+  },
+  deadline : {
+    type: new DataTypes.DATE(),
+    allowNull:false
   }
 
 });

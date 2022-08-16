@@ -9,7 +9,7 @@ import multer from 'multer';
 
 
 
-//Cron.deadlineControl();
+Cron.deadlineControl();
 
 db.authenticate()
     .then(() => console.log('Database connected...'))

@@ -1,29 +1,28 @@
 import cron from 'node-cron';
-import db from "../config/database";
 import user from "../models/user";
 import todos from "../models/todos";
 import email from "../service/Email";
+import { Op } from "sequelize";
 
 class Cron {
     static deadlineControl(){
         cron.schedule("*/60 * * * * *", function() {
-            db.query('select * from "todos" where "updatedAt"="createdAt" and "createdAt"<=now()').then((data: any) => {
-                const deadline = data[0];
-                console.log(data[1].rowCount);
-                deadline.forEach(async element => {
-                    await user.findByPk(element.user_id).then((data : any) => {
+            todos.findAll({where:{status:false,deadline: {[Op.lte] : Date.now()}}}).then((data:any) => {
+                console.log(data.length);
+                data.forEach(async e => {
+                    await user.findByPk(e.user_id).then((data : any) => {
                         // Sending mail and update
-                        email.sendMails('mail@example.com', element.name+' task time over.', 'Task Mail');
+                        //email.sendMails('murat@epsilam.com', e.name+' task time over.', 'Task Mail');
                     });
 
-                    // element update status change true
-                    await todos.findByPk(element.id).then((todo:any) => {
+                    await todos.findByPk(e.id).then((todo:any) => {
                         todo.update({status:true}).then(status => {
-                            console.log('başarılı oldu')
+                            console.log('send to mail')
                         }).catch(error => {
                             console.log(error)
                         });
                     });
+
                 })
             });
         });
