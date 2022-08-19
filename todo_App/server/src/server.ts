@@ -17,7 +17,7 @@ db.authenticate()
 
 const app: Express = express();
 const port = 8080;
-const upload = multer();
+const upload : any = multer();
 
 
 app.use(cors());

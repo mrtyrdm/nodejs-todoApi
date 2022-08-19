@@ -9,7 +9,10 @@ services:
       - '5432:5432'
     volumes:
       - todoapp-db:/var/lib/postgresql/data
-
+  redis:
+    image: redis:alpine
+    ports:
+    - '6379:6379'
   todoapp:
     build:
       context: .
@@ -18,10 +21,14 @@ services:
       DB_USER: postgres
       DB_PASSWORD: postgres
       DB_HOST: postgres
+      REDIS_URL: redis://cache
     depends_on:
       - postgres
     ports:
       - '3000:3000'
+    links:
+      - redis
+
         
 volumes:
   todoapp-db:
