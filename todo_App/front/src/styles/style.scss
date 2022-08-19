@@ -1,0 +1,98 @@
+// Login
+
+
+.loginPage {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+
+  .login {
+    display: flex;
+    align-items: center;
+    width: 550px;
+    form {
+      text-align: center;
+      border-radius: 8px;
+      background: white;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      input {
+        margin-bottom: 1rem;
+        padding: 12px 8px;
+        border-radius: 0.25rem!important;
+        box-shadow: 0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.06)!important;
+        border: 0;
+        background: #edf2f7;
+      }
+
+      button {
+
+      }
+    }
+  }
+}
+
+
+// Login
+
+
+.todoPage {
+  .card {
+    margin-bottom: 10px;
+    .card-subtitle {
+      margin-top: 10px;
+      svg {
+        width: 20px;
+        margin-right: 5px;
+      }
+    }
+
+
+  }
+
+  input {
+    padding: 12px 8px;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.06)!important;
+    border: 0;
+    background: #edf2f7;
+  }
+}
+
+.modal {
+  font-size: 12px;
+}
+.modal > .header {
+  width: 100%;
+  border-bottom: 1px solid gray;
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
+}
+.modal > .content {
+  width: 100%;
+  padding: 10px 5px;
+}
+.modal > .actions {
+  width: 100%;
+  padding: 10px 5px;
+  margin: auto;
+  text-align: center;
+}
+.modal > .close {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  padding: 2px 5px;
+  line-height: 20px;
+  right: -10px;
+  top: -10px;
+  font-size: 24px;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #cfcece;
+}
